@@ -1,0 +1,24 @@
+{
+  "name": "firstcomment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/process.js",
+  "scripts": {
+    "process": "node app/process.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d0kur0/firstComment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d0kur0/firstComment/issues"
+  },
+  "homepage": "https://github.com/d0kur0/firstComment#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "pending-xhr-puppeteer": "^1.0.17",
+    "puppeteer": "^1.13.0"
+  }
+}
