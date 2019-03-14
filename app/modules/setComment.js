@@ -8,7 +8,6 @@ module.exports = async (page, state, message) => {
 
   const lastPost = state.getPost();
 
-  // Проверка, есть ли уже комментарии
   const existsComments = await page.$(`#post${lastPost} .reply.reply_dived.clear.reply_replieable._post`);
 
   if (existsComments) {
@@ -18,13 +17,18 @@ module.exports = async (page, state, message) => {
     await page.click('a.like_btn.comment._comment._reply_wrap.empty');
     await page.focus('div.reply_field.submit_post_field')
       .then(async () => {
-        await page.keyboard.type(message);
+        await page.keyboard.type(message)
+          .then(() => log.info('Печатаю комментарий'))
+          .catch(() => log.error('Не удалось напечатать комментерий'));
 
         const pendingXHR = new PendingXHR(page);
-        await page.click('div.reply_text_wrapper > button');
+        await page.click('div.reply_text_wrapper > button')
+          .then(() => log.success('Отправляю комментарий'))
+          .catch(() => log.error('Не удалось отправить комментарий'));
+
         await pendingXHR.waitForAllXhrFinished()
           .then(() => {
-            log.info('Все XHR запросы завершены');
+            log.info('Все XHR запросы завершены, комментарий оставлен');
           });
       });
   }
