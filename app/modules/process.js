@@ -11,12 +11,12 @@ module.exports = async () => {
 
   await auth(page);
 
-  let recursionCall = async () => {
-    await loop(page, process);
-    await sleep(process.delay);
-
-    await recursionCall();
-  };
-
-  await recursionCall();
+  while (true) {
+    try {
+      await loop(page, process);
+      await sleep(process.delay);
+    } catch (Exception) {
+      continue;
+    }
+  }
 };
