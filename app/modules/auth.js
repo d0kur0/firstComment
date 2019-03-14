@@ -15,8 +15,8 @@ module.exports = async (page) => {
 
       await page.focus('#index_email');
       await page.keyboard.type(authData.username)
-        .then(() => log.success('Поле ввода логина успешно заполнено'))
-        .catch(() => log.error('Не удалось заполнить поле ввода логина'));
+        .then(() => log.info('Поле ввода логина успешно заполнено'))
+        .catch(() => log.info('Не удалось заполнить поле ввода логина'));
     })
     .catch(() => log.error('Поле ввода логина не было отрендерено'));
 
@@ -26,7 +26,7 @@ module.exports = async (page) => {
 
       await page.focus('#index_pass');
       await page.keyboard.type(authData.password)
-        .then(() => log.success('Поле ввода пароля успешно заполнено'))
+        .then(() => log.info('Поле ввода пароля успешно заполнено'))
         .catch(() => log.error('Не удалось заполнить поле ввода пароля'));
     })
     .catch(() => log.error('Поле ввода пароля не было отрендерено'));
