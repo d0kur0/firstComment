@@ -2,15 +2,15 @@ const chalk = require('chalk');
 
 module.exports = {
   header (message) {
-    console.log(chalk.cyan.bold(`\r\n➣ ${message} `))
+    console.log(chalk.magenta.bold(`\r\n➣ ${message} `))
   },
 
   info (message) {
-    console.log(chalk.gray.bold(`  ⮡ ${message} `))
+    console.log(chalk.blue(`  ⮡ ${message} `))
   },
 
   success (message) {
-    console.log(chalk.yellow.bold(`  ⮡ ${message} `))
+    console.log(chalk.cyan(`  ⮡ ${message} `))
   },
 
   error (message) {
