@@ -1,7 +1,7 @@
 const log = require('./consoleLogs.js');
 const { PendingXHR } = require('pending-xhr-puppeteer');
 const setComment = require('./setComment.js');
-const sleep = require('./sleep.js');
+const state = require('./postState.js');
 
 module.exports = async (page, process) => {
 
@@ -19,20 +19,18 @@ module.exports = async (page, process) => {
     return post.getAttribute('data-post-id');
   });
 
-  // Первый запуск, получает ID последнего поста
-  if (global._temp.lastPost === 0) {
-    global._temp.lastPost = lastPost;
-    log.info('Первый запуск, берём последний ID и завершаем итерацию');
-    return;
+  const firstState = state.getPost();
+  if (firstState !== lastPost) {
+    state.setPost(lastPost);
+
+    if (firstState === undefined) {
+      return log.info('Первый запуск, берём последний ID и завершаем итерацию');
+    }
   }
 
-  if (global._temp.lastPost !== lastPost) {
-    global._temp.state = false;
-  }
-
-  if (global._temp.lastPost !== lastPost && !global._temp.state) {
-    await setComment(page);
-    global._temp.state = true;
+  if (firstState !== lastPost && !state.getState()) {
+    await setComment(page, state, process.message);
+    state.setState();
   } else {
     log.info('Ничего нового');
   }

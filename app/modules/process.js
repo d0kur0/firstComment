@@ -6,11 +6,6 @@ const process = require('../configs/process.js');
 const loop = require('./loop.js');
 const sleep = require('./sleep.js');
 
-global._temp = {
-  lastPost: 0,
-  state: false
-};
-
 module.exports = async () => {
   const browser = await puppeteer.launch(browserSettings);
   const page = await browser.newPage();
