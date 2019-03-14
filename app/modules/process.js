@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 const browserSettings = require('../configs/browserSettings.js');
-const log = require('./consoleLogs.js');
 const auth = require('./auth.js');
 const process = require('../configs/process.js');
 const loop = require('./loop.js');
