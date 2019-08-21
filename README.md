@@ -26,16 +26,11 @@ npm i
 ## Настройки
 
 Все настройки находятся в папке ```app/configs```
+Для запуска и успешной авторизации нужно установвить в переменные окружения логин и пароль от аккаунта VK.
 
-#### ```app/configs/authData.js```
-```js
-module.exports = {
-  // Логин для авторизации
-  username: "+79961826173",
-  // Пароль для авторизации
-  password: "firstCommentDevelop"
-};
-```
+``VK_USERNAME`` - имя пользователя.
+
+``VK_PASSWORD`` - пароль пользователя.
 
 #### ```app/configs/browserSettings.js```
 Этот объект полностью передаётся в конструктор создания сессии в браузере, можно указать валидные настройки из [документации к Pupetteer](https://github.com/GoogleChrome/puppeteer/blob/v1.13.0/docs/api.md#puppeteerlaunchoptions)
